@@ -29,7 +29,21 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{ import = "plugins" },
 })
-
 vim.cmd("colorscheme catppuccin-mocha")
+
+require('mini.pick').setup()
+require('mini.pairs').setup()
+require('oil').setup()
+require("stay-centered").setup()
+require("colorizer").setup({
+  user_default_options = {
+    tailwind = true,
+  },
+})
+
+-- vim.keymap.set('n', '<leader>ff', ":Pick files<CR>", { desc = "Find Files" })
+-- vim.keymap.set('n', '<leader>fb', ":Pick buffers<CR>", { desc = "Find Buffers" })
+vim.keymap.set('n', '<leader>fh', ":Pick help<CR>",{ desc = "Find Help" })
+vim.keymap.set('n', '<leader>e', ":Oil<CR>",{ desc = "Explore" })
 
 vim.lsp.enable({"lua_ls"})

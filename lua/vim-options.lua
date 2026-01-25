@@ -1,6 +1,4 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-print("Leader key set to: '" .. vim.g.mapleader .. "'")
 vim.g.autoformat = true
 
 -- Vim Options
@@ -57,7 +55,7 @@ opt.updatetime = 200
 opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
-opt.colorcolumn = "140"
+-- opt.colorcolumn = "140"
 opt.wrap = false
 opt.linebreak = true
 opt.fillchars = {
@@ -151,6 +149,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		"neotest-summary",
 		"neotest-output-panel",
 		"toggleterm",
+		"oil",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
@@ -163,11 +162,13 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = tru
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
+
 vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+vim.keymap.set("n", "bd", "<cmd>bdelete<cr>", { desc = "Buffer delete" })
+
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
