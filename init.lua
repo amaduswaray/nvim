@@ -23,15 +23,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
-
 require("lazy").setup({
+	{ import = "LSP" },
+	-- { import = "plugins.LSP" },
 	{ import = "plugins" },
 })
 
-require('mini.pick').setup()
-require('mini.pairs').setup()
-require('oil').setup({
+require("mini.pick").setup()
+require("mini.pairs").setup()
+require("oil").setup({
 	dependencies = {
 		"refractalize/oil-git-status.nvim",
 	},
@@ -45,18 +45,18 @@ require('oil').setup({
 })
 
 require("oil-git-status").setup({
-  show_ignored = false,
+	show_ignored = false,
 })
 require("stay-centered").setup()
 require("colorizer").setup({
-  user_default_options = {
-    tailwind = true,
-  },
+	user_default_options = {
+		tailwind = true,
+	},
 })
 
 -- vim.keymap.set('n', '<leader>ff', ":Pick files<CR>", { desc = "Find Files" })
 -- vim.keymap.set('n', '<leader>fb', ":Pick buffers<CR>", { desc = "Find Buffers" })
-vim.keymap.set('n', '<leader>fh', ":Pick help<CR>",{ desc = "Find Help" })
-vim.keymap.set('n', '<leader>e', ":Oil<CR>",{ desc = "Explore" })
+vim.keymap.set("n", "<leader>fh", ":Pick help<CR>", { desc = "Find Help" })
+vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Explore" })
 
-vim.lsp.enable({"lua_ls"})
+vim.lsp.enable({ "lua_ls" })
