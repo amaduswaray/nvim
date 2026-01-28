@@ -59,6 +59,9 @@ require("colorizer").setup({
 vim.keymap.set("n", "<leader>fh", ":Pick help<CR>", { desc = "Find Help" })
 vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Explore" })
 
+-- Activating lazygit
+vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>")
+
 -- LSP Stuff
 
 local lsp_opts = { noremap = true, silent = true }

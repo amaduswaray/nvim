@@ -11,7 +11,7 @@ end
 opt.cmdheight = 1
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 2
-opt.confirm = true 
+opt.confirm = true
 opt.cursorline = true
 opt.expandtab = true
 opt.formatoptions = "jcroqlnt"
@@ -42,7 +42,7 @@ opt.splitkeep = "screen"
 opt.splitright = true
 opt.tabstop = 2
 opt.softtabstop = 2
-opt.termguicolors = true 
+opt.termguicolors = true
 opt.swapfile = false
 
 if not vim.g.vscode then
@@ -73,11 +73,8 @@ end
 
 vim.g.markdown_recommended_style = 0
 
-
 vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], { noremap = true })
 vim.keymap.set("n", "U", [[<C-r>]], { noremap = true })
-
-
 
 local function augroup(name)
 	return vim.api.nvim_create_augroup("amavim_" .. name, { clear = true })
@@ -183,11 +180,7 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
-
 -- Activating lazy -- remove for 12
 vim.keymap.set("n", "<leader>l", ":Lazy<CR>")
-
--- Activating lazygit 
--- vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>")
 
 vim.g.vim_markdown_frontmatter = 0
