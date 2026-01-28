@@ -25,7 +25,6 @@ return {
 	"stevearc/oil.nvim",
 	"refractalize/oil-git-status.nvim",
 	"nvim-tree/nvim-web-devicons",
-	--"echasnovski/mini.pick",
 	{ "nvim-mini/mini.pick", version = false },
 	{
 		"folke/snacks.nvim",
@@ -46,7 +45,9 @@ return {
 			{
 				"<leader>fb",
 				function()
-					Snacks.picker.buffers()
+					Snacks.picker.buffers({
+						layout = "dropdown",
+					})
 				end,
 				desc = "Find Buffers",
 			},
@@ -81,6 +82,24 @@ return {
 					Snacks.picker.git_log()
 				end,
 				desc = "Git Log",
+			},
+			{
+				"<leader>fd",
+				function()
+					Snacks.picker.diagnostics({
+						layout = "telescope",
+					})
+				end,
+				desc = "Diagnostics",
+			},
+			{
+				"<leader>fD",
+				function()
+					Snacks.picker.diagnostics_buffer({
+						layout = "telescope",
+					})
+				end,
+				desc = "Buffer Diagnostics",
 			},
 		},
 	},

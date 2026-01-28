@@ -4,8 +4,7 @@ require("vim-options")
 -- vim.pack.add({
 --  {src = "catppuccin/nvim"},
 --})
--- THEME: Aura dracula spirit
---vim.cmd("colorscheme catppuccin-mocha")
+-- THEME: Rose Pine
 
 vim.cmd(":hi statusline guibg=NONE")
 
@@ -54,8 +53,6 @@ require("colorizer").setup({
 	},
 })
 
--- vim.keymap.set('n', '<leader>ff', ":Pick files<CR>", { desc = "Find Files" })
--- vim.keymap.set('n', '<leader>fb', ":Pick buffers<CR>", { desc = "Find Buffers" })
 vim.keymap.set("n", "<leader>fh", ":Pick help<CR>", { desc = "Find Help" })
 vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Explore" })
 
@@ -65,28 +62,31 @@ vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>")
 -- LSP Stuff
 
 local lsp_opts = { noremap = true, silent = true }
-vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", lsp_opts)
 
 lsp_opts.desc = "Go to declaration"
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, lsp_opts)
 
--- opts.desc = "Show LSP definitions"
--- vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", lsp_opts)
---
--- opts.desc = "Show LSP implementations"
--- vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", lsp_opts)
---
--- opts.desc = "Show LSP type definitions"
--- vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", lsp_opts)
---
+vim.keymap.set("n", "gd", function()
+	Snacks.picker.lsp_definitions()
+end, vim.tbl_extend("force", lsp_opts, { desc = "Goto Definition" }))
+
+vim.keymap.set("n", "gD", function()
+	Snacks.picker.lsp_declarations()
+end, vim.tbl_extend("force", lsp_opts, { desc = "Goto Declaration" }))
+
+vim.keymap.set("n", "gI", function()
+	Snacks.picker.lsp_implementations()
+end, vim.tbl_extend("force", lsp_opts, { desc = "Goto Implementation" }))
+
+vim.keymap.set("n", "gR", function()
+	Snacks.picker.lsp_references()
+end, vim.tbl_extend("force", lsp_opts, { desc = "References", nowait = true }))
+
 lsp_opts.desc = "See available code actions"
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, lsp_opts)
 
 lsp_opts.desc = "Smart rename"
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, lsp_opts)
-
--- opts.desc = "Show buffer diagnostics"
--- vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", lsp_opts)
 
 lsp_opts.desc = "Show line diagnostics"
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, lsp_opts)
