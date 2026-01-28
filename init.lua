@@ -59,4 +59,43 @@ require("colorizer").setup({
 vim.keymap.set("n", "<leader>fh", ":Pick help<CR>", { desc = "Find Help" })
 vim.keymap.set("n", "<leader>e", ":Oil<CR>", { desc = "Explore" })
 
-vim.lsp.enable({ "lua_ls" })
+-- LSP Stuff
+
+local lsp_opts = { noremap = true, silent = true }
+vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", lsp_opts)
+
+lsp_opts.desc = "Go to declaration"
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, lsp_opts)
+
+-- opts.desc = "Show LSP definitions"
+-- vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", lsp_opts)
+--
+-- opts.desc = "Show LSP implementations"
+-- vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", lsp_opts)
+--
+-- opts.desc = "Show LSP type definitions"
+-- vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", lsp_opts)
+--
+lsp_opts.desc = "See available code actions"
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, lsp_opts)
+
+lsp_opts.desc = "Smart rename"
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, lsp_opts)
+
+-- opts.desc = "Show buffer diagnostics"
+-- vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", lsp_opts)
+
+lsp_opts.desc = "Show line diagnostics"
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, lsp_opts)
+
+lsp_opts.desc = "Go to previous diagnostic"
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, lsp_opts) -- Depricated, .jump() is the new func
+
+lsp_opts.desc = "Go to next diagnostic"
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, lsp_opts)
+
+lsp_opts.desc = "Show documentation for what is under cursor"
+vim.keymap.set("n", "K", vim.lsp.buf.hover, lsp_opts)
+
+lsp_opts.desc = "Restart LSP"
+vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", lsp_opts)
