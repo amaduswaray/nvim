@@ -29,7 +29,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{ import = "plugins" },
 })
-vim.cmd("colorscheme catppuccin-mocha")
+-- vim.cmd("colorscheme catppuccin-mocha")
 
 require('mini.pick').setup()
 require('mini.pairs').setup()

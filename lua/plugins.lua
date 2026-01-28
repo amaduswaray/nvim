@@ -1,5 +1,27 @@
 return {
-  "catppuccin/nvim",
+  -- "catppuccin/nvim",
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    opts = {
+      disable_background = true,
+      styles = {
+        bold = false,
+        italic = true,
+        transparency = true,
+      },
+      highlight_groups = {
+        LspInlayHint = { bg = "base", fg = "muted", italic = true },
+        NotificationInfo = { bg = "none", fg = "text" },
+        NotificationWarning = { bg = "none", fg = "subtle" },
+        NotificationError = { bg = "none", fg = "love" },
+      },
+    },
+    config = function(_, opts)
+      require("rose-pine").setup(opts)
+      vim.cmd("colorscheme rose-pine")
+    end,
+  },
   "NvChad/nvim-colorizer.lua",
   "stevearc/oil.nvim",
   --"echasnovski/mini.pick",
@@ -15,9 +37,13 @@ return {
     keys = {
       { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
       { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Find Buffers" },
-      { "<leader>fg", function() Snacks.picker.grep() end, desc = "Find Grep" },
+      { "<leader>fg", function() Snacks.picker.grep({
+        layout = "ivy"
+      }) end, desc = "Find Grep" },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = " Find Recent" },
-      { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+      { "<leader>gs", function() Snacks.picker.git_status({
+        layout = "telescope"
+      }) end, desc = "Git Status" },
       { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
     }
   },
@@ -55,61 +81,61 @@ return {
       preset = "modern",
     }
   },
-{
-	"lukas-reineke/indent-blankline.nvim",
-	--event = "LazyFile",
-	opts = {
-		indent = {
-			char = "│",
-			tab_char = "│",
-		},
-		scope = { enabled = false },
-		exclude = {
-			filetypes = {
-				"help",
-				"alpha",
-				"dashboard",
-				"neo-tree",
-				"NvimTree",
-				"Trouble",
-				"trouble",
-				"lazy",
-				"mason",
-				"notify",
-				"toggleterm",
-				"lazyterm",
-			},
-		},
-	},
-	main = "ibl",
-},
-{
-	"echasnovski/mini.indentscope",
-	version = false,
-	opts = {
-		symbol = "│",
-		options = { try_as_border = true },
-	},
-	init = function()
-		vim.api.nvim_create_autocmd("FileType", {
-			pattern = {
-				"help",
-				"alpha",
-				"dashboard",
-				"neo-tree",
-				"NvimTree",
-				"Trouble",
-				"trouble",
-				"lazy",
-				"mason",
-				"notify",
-				"toggleterm",
-				"lazyterm",
-			},
-			callback = function()
-				vim.b.miniindentscope_disable = true
-			end,
-		})
-	end,
-}
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    --event = "LazyFile",
+    opts = {
+      indent = {
+        char = "│",
+        tab_char = "│",
+      },
+      scope = { enabled = false },
+      exclude = {
+        filetypes = {
+          "help",
+          "alpha",
+          "dashboard",
+          "neo-tree",
+          "NvimTree",
+          "Trouble",
+          "trouble",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
+          "lazyterm",
+        },
+      },
+    },
+    main = "ibl",
+  },
+  {
+    "echasnovski/mini.indentscope",
+    version = false,
+    opts = {
+      symbol = "│",
+      options = { try_as_border = true },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {
+          "help",
+          "alpha",
+          "dashboard",
+          "neo-tree",
+          "NvimTree",
+          "Trouble",
+          "trouble",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
+          "lazyterm",
+        },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
+  }
 }
