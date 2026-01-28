@@ -1,5 +1,4 @@
 return {
-  -- "catppuccin/nvim",
   {
     "rose-pine/neovim",
     name = "rose-pine",
@@ -24,6 +23,7 @@ return {
   },
   "NvChad/nvim-colorizer.lua",
   "stevearc/oil.nvim",
+  "refractalize/oil-git-status.nvim",
   --"echasnovski/mini.pick",
   { 'nvim-mini/mini.pick', version = false },
   {
@@ -137,5 +137,31 @@ return {
         end,
       })
     end,
-  }
+  },
+  "Saghen/blink.cmp",
+  {
+    {
+      "stevearc/conform.nvim",
+      opts = {
+        format_on_save = {
+          timeout_ms = 8000,
+          lsp_format = "fallback",
+        },
+        formatters_by_ft = {
+          lua = { "stylua" },
+          javascript = { "prettierd" },
+          javascriptreact = { "prettierd" },
+          typescript = { "prettierd" },
+          typescriptreact = { "prettierd" },
+          json = { "prettierd" },
+        },
+      },
+    },
+    {
+      "windwp/nvim-ts-autotag",
+      config = function()
+        require("nvim-ts-autotag").setup()
+      end,
+    },
+  },
 }

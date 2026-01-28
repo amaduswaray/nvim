@@ -31,7 +31,22 @@ require("lazy").setup({
 
 require('mini.pick').setup()
 require('mini.pairs').setup()
-require('oil').setup()
+require('oil').setup({
+	dependencies = {
+		"refractalize/oil-git-status.nvim",
+	},
+	---@type oil.SetupOpts
+	win_options = {
+		signcolumn = "yes:2",
+	},
+	view_options = {
+		show_hidden = true,
+	},
+})
+
+require("oil-git-status").setup({
+  show_ignored = false,
+})
 require("stay-centered").setup()
 require("colorizer").setup({
   user_default_options = {
