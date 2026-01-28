@@ -9,8 +9,6 @@ require("vim-options")
 
 vim.cmd(":hi statusline guibg=NONE")
 
-
-
 -- TMP Lazyvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
