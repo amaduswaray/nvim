@@ -5,17 +5,22 @@ return {
 		"nvim-lua/plenary.nvim",
 	},
 	config = function()
-		require("lspconfig").lua_ls.setup({
-			settings = {
+		vim.lsp.config("lua_ls", {
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = { -- custom settings for lua
 				Lua = {
+					-- make the language server recognize "vim" global
 					diagnostics = {
-						globals = { "vim" }, -- stops 'undefined global vim'
+						globals = { "vim" },
 					},
 					workspace = {
-						library = vim.api.nvim_get_runtime_file("", true),
-						checkThirdParty = false,
+						-- make language server aware of runtime files
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+							[vim.fn.stdpath("config") .. "/lua"] = true,
+						},
 					},
-					telemetry = { enable = false },
 				},
 			},
 		})

@@ -24,7 +24,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{ import = "LSP" },
-	-- { import = "plugins.LSP" },
 	{ import = "plugins" },
 })
 
@@ -102,3 +101,12 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover, lsp_opts)
 
 lsp_opts.desc = "Restart LSP"
 vim.keymap.set("n", "<leader>rs", ":LspRestart<CR>", lsp_opts)
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client then
+			client.server_capabilities.semanticTokensProvider = nil
+		end
+	end,
+})
