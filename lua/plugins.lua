@@ -24,6 +24,7 @@ return {
 	"NvChad/nvim-colorizer.lua",
 	"stevearc/oil.nvim",
 	"refractalize/oil-git-status.nvim",
+	"MunifTanjim/nui.nvim",
 	"nvim-tree/nvim-web-devicons",
 	{ "nvim-mini/mini.pick", version = false },
 	{
@@ -256,6 +257,9 @@ return {
 			window = {
 				padding = 0,
 				margin = { horizontal = 0 },
+				placement = {
+					horizontal = "right",
+				},
 			},
 			render = function(props)
 				-- Typical rendering
@@ -282,9 +286,8 @@ return {
 					or "Normal"
 				local filename_component = { filename, group = filename_hl }
 
-				-- Modified icon
 				local modified = vim.bo[props.buf].modified
-				local modified_component = modified and { " ● ", group = "BufferCurrentMod" } or ""
+				local modified_component = modified and { " ● ", guifg = "#9ccfd8", guibg = "NONE" } or ""
 
 				local ft_icon, ft_color = devicons.get_icon_color(filename)
 				local icon_component = ft_icon and { " ", ft_icon, " ", guifg = ft_color } or ""
@@ -325,12 +328,10 @@ return {
 		config = function()
 			local config = require("nvim-treesitter.configs")
 			config.setup({
-				ensure_installed = { "markdown_inline", "blade" },
 				auto_install = true,
 				highlight = { enable = true },
 				indent = { enable = true },
 			})
-			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 		end,
 	},
 	{
@@ -349,7 +350,6 @@ return {
 				violet = "#d183e8",
 				green = "#A6E3A1",
 				orange = "#FAB387",
-				grey = "#353442",
 				pink = "#F5C2E7",
 				transparant = "#14161b",
 			}
@@ -431,6 +431,39 @@ return {
 					},
 				},
 				extensions = { "lazy" },
+			})
+		end,
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {},
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+		config = function()
+			local noice = require("noice")
+			noice.setup({
+
+				cmdline = {
+					enabled = false,
+				},
+
+				messages = {
+					enabled = false,
+				},
+
+				popupmenu = {
+					enabled = false,
+				},
+
+				presets = {
+					bottom_search = false,
+					command_palette = false,
+					long_message_to_split = false,
+					inc_rename = false,
+					lsp_doc_border = false,
+				},
 			})
 		end,
 	},
