@@ -30,7 +30,7 @@ opt.scrolloff = 8
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 opt.shiftround = true
 opt.shiftwidth = 2
-opt.shortmess:append({ W = true, I = true, c = true, C = true })
+opt.shortmess:append({ W = true, I = false, c = true, C = true })
 opt.showmode = false
 opt.sidescrolloff = 8
 opt.signcolumn = "yes"
