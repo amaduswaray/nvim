@@ -35,12 +35,6 @@ return {
 						vim.lsp.buf.format({ timeout_ms = 10000 })
 					end
 				end)
-
-				vim.keymap.set("n", "<leader>h", function()
-					vim.diagnostic.open_float({
-						border = "rounded",
-					})
-				end, opts)
 			end,
 		})
 
