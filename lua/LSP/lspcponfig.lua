@@ -69,7 +69,21 @@ return {
 		local capabilities = blink_cmp.get_lsp_capabilities()
 
 		-- LSPS
-		vim.lsp.enable({ "lua_ls", "ts_ls", "gopls", "eslint", "tailwindcss", "jsonls" })
+		vim.lsp.enable({
+			"lua_ls",
+			"ts_ls",
+			"gopls",
+			"eslint",
+			"tailwindcss",
+			"jsonls",
+			"svelte",
+			"marksman",
+			"cssls",
+			"rust_analyzer",
+			"elixirls",
+			"clangd",
+			"zls",
+		})
 		vim.lsp.config("lua_ls", {
 			capabilities = capabilities,
 			settings = { -- custom settings for lua

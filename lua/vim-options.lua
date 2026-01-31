@@ -208,6 +208,6 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
 -- Activating lazy -- remove for 12
-vim.keymap.set("n", "<leader>l", ":Lazy<CR>")
+vim.keymap.set("n", "<leader>l", "<CMD>Lazy<CR>")
 
 vim.g.vim_markdown_frontmatter = 0
