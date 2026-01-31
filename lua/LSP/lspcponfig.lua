@@ -1,47 +1,25 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		"rachartier/tiny-code-action.nvim",
 		"nvim-lua/plenary.nvim",
 	},
 	config = function()
-		local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
-
-		vim.lsp.config("lua_ls", {
-			settings = { -- custom settings for lua
-				Lua = {
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.stdpath("config") .. "/lua"] = true,
-						},
-					},
-				},
-			},
-		})
-		vim.lsp.enable({ "lua_ls", "ts_ls", "gopls", "eslint", "tailwindcss", "jsonls" })
-
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
 				local opts = { buffer = ev.buf }
-				-- TODO: Add my specific stuff
+				-- TODO: Set snacks picker for gd, gR, gi
 				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-				vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, opts)
+				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+				vim.keymap.set("n", "gR", vim.lsp.buf.references, opts)
+				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-				vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-
-				vim.keymap.set({ "n", "x" }, "<leader>ca", function()
-					require("tiny-code-action").code_action({})
-				end, { noremap = true, silent = true })
+				vim.keymap.set("n", "<leader>rs", "<CMD>LspRestart<CR>", opts)
+				vim.keymap.set("n", "[d", vim.diagnostic.get_prev, opts)
+				vim.keymap.set("n", "]d", vim.diagnostic.get_next, opts)
+				vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
+				vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
 				vim.keymap.set("n", "<leader>li", function()
 					if vim.bo.filetype == "typescript" or vim.bo.filetype == "typescriptreact" then
@@ -64,6 +42,34 @@ return {
 					})
 				end, opts)
 			end,
+		})
+
+		local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+		for type, icon in pairs(signs) do
+			local hl = "DiagnosticSign" .. type
+			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+		end
+
+		local blink_cmp = require("blink.cmp")
+		local capabilities = blink_cmp.get_lsp_capabilities()
+
+		-- LSPS
+		vim.lsp.enable({ "lua_ls", "ts_ls", "gopls", "eslint", "tailwindcss", "jsonls" })
+		vim.lsp.config("lua_ls", {
+			capabilities = capabilities,
+			settings = { -- custom settings for lua
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+							[vim.fn.stdpath("config") .. "/lua"] = true,
+						},
+					},
+				},
+			},
 		})
 	end,
 }
