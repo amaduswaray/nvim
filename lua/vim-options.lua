@@ -169,6 +169,16 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
 	end,
 })
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		if vim.fn.argc() == 0 and vim.bo.filetype == "" then
+			-- Unlist buffer
+			vim.bo.buflisted = false
+			-- Map q to close
+			vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = 0, silent = true })
+		end
+	end,
+})
 
 -- Keymaps
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
