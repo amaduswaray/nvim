@@ -483,6 +483,10 @@ return {
 			end
 		end,
 	},
+	{
+		"numToStr/Comment.nvim",
+		lazy = false,
+	},
 	-- LSP stuff
 	{ "nvim-lua/plenary.nvim", lazy = true },
 }

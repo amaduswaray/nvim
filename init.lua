@@ -40,6 +40,12 @@ require("oil").setup({
 	view_options = {
 		show_hidden = true,
 	},
+	float = {
+		padding = 2,
+		max_width = 0.5,
+		max_height = 0.5,
+		border = "rounded",
+	},
 })
 
 require("oil-git-status").setup({
@@ -53,7 +59,7 @@ require("colorizer").setup({
 })
 
 vim.keymap.set("n", "<leader>fh", "<CMD>Pick help<CR>", { desc = "Find Help" })
-vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Explore" })
+vim.keymap.set("n", "<leader>e", "<CMD>Oil --float<CR>", { desc = "Explore" })
 
 -- Activating lazygit
 vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>")
