@@ -34,10 +34,14 @@ return {
 				vim.keymap.set("n", "[d", vim.diagnostic.get_prev, opts)
 
 				opts.desc = "Go to next diagnostic"
-				vim.keymap.set("n", "]d", vim.diagnostic.get_next, opts)
+				vim.keymap.set("n", "]d", function()
+					vim.diagnostic.jump({ count = 1, float = true })
+				end, opts)
 
 				opts.desc = "Show line diagnostics"
-				vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
+				vim.keymap.set("n", "[d", function()
+					vim.diagnostic.jump({ count = -1, float = true })
+				end, opts)
 
 				opts.desc = "See available code actions"
 				vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
