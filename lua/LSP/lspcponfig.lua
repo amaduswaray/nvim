@@ -30,6 +30,9 @@ return {
 				opts.desc = "Restart LSP"
 				vim.keymap.set("n", "<leader>rs", "<CMD>LspRestart<CR>", opts)
 
+				opts.desc = "Show line diagnostics"
+				vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+
 				opts.desc = "Go to previous diagnostic"
 				vim.keymap.set("n", "[d", vim.diagnostic.get_prev, opts)
 
