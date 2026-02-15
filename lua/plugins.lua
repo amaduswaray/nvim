@@ -413,7 +413,7 @@ return {
 					lualine_b = {},
 
 					lualine_c = {
-						{ "filetype", colored = true, icon_only = true },
+						-- { "filetype", colored = true, icon_only = true },
 						{ "branch", icon = "" },
 						{ "diagnostics" },
 					},
