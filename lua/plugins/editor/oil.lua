@@ -1,4 +1,3 @@
-
 require("oil").setup({
 	dependencies = {
 		"refractalize/oil-git-status.nvim",

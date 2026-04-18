@@ -32,6 +32,8 @@ vim.pack.add({
 	"https://github.com/stevearc/conform.nvim",
 	"https://github.com/rafamadriz/friendly-snippets",
 	"https://github.com/OXY2DEV/markview.nvim",
+	"https://github.com/stevearc/dressing.nvim",
+	"https://github.com/epwalsh/obsidian.nvim",
 })
 
 -- PLUGIN SETUPS
@@ -42,6 +44,7 @@ require("mini.pick").setup()
 require("mini.pairs").setup()
 require("stay-centered").setup()
 require("nvim-ts-autotag").setup()
+require("dressing").setup()
 require("which-key").setup({
 	preset = "helix",
 })
