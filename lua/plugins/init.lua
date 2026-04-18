@@ -1,3 +1,4 @@
-require("plugins.loader").load("UI")
-require("plugins.loader").load("Editor")
-require("plugins.loader").load("LSP")
+local loader = require("plugins.loader")
+loader.load("UI")
+loader.load("Editor")
+loader.load("LSP")
