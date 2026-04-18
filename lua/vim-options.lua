@@ -211,3 +211,9 @@ vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 vim.keymap.set("n", "<leader>l", "<CMD>Lazy<CR>")
 
 vim.g.vim_markdown_frontmatter = 0
+
+vim.keymap.set("n", "<leader>fh", "<CMD>Pick help<CR>", { desc = "Find Help" })
+vim.keymap.set("n", "<leader>e", "<CMD>Oil --float<CR>", { desc = "Explore" })
+
+-- Activating lazygit
+vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>")

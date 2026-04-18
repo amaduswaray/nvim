@@ -1,33 +1,5 @@
 return {
 	{
-		"rose-pine/neovim",
-		name = "rose-pine",
-		opts = {
-			disable_background = true,
-			styles = {
-				bold = false,
-				italic = true,
-				transparency = true,
-			},
-			highlight_groups = {
-				LspInlayHint = { bg = "base", fg = "muted", italic = true },
-				NotificationInfo = { bg = "none", fg = "text" },
-				NotificationWarning = { bg = "none", fg = "subtle" },
-				NotificationError = { bg = "none", fg = "love" },
-			},
-		},
-		config = function(_, opts)
-			require("rose-pine").setup(opts)
-			vim.cmd("colorscheme rose-pine")
-		end,
-	},
-	"NvChad/nvim-colorizer.lua",
-	"stevearc/oil.nvim",
-	"refractalize/oil-git-status.nvim",
-	"MunifTanjim/nui.nvim",
-	"nvim-tree/nvim-web-devicons",
-	{ "nvim-mini/mini.pick", version = false },
-	{
 		"folke/snacks.nvim",
 		---@type snacks.Config
 		opts = {
@@ -123,12 +95,6 @@ return {
 				end
 			end,
 		},
-	},
-	"neovim/nvim-lspconfig",
-	"arnamak/stay-centered.nvim",
-	{
-		"echasnovski/mini.pairs",
-		event = "VeryLazy",
 	},
 
 	{

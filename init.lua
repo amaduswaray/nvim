@@ -1,31 +1,47 @@
 require("vim-options")
+-- Read this docs for new add https://echasnovski.com/blog/2026-03-13-a-guide-to-vim-pack
 
--- Package manager whenever 12 comes out
--- vim.pack.add({
---  {src = "catppuccin/nvim"},
---})
--- THEME: Rose Pine
+vim.pack.add({
+	"https://github.com/rose-pine/neovim",
+	"https://github.com/NvChad/nvim-colorizer.lua",
+  "https://github.com/echasnovski/mini.pairs",
+  "https://github.com/echasnovski/mini.pick",
+	"https://github.com/stevearc/oil.nvim",
+	"https://github.com/refractalize/oil-git-status.nvim",
+	"https://github.com/MunifTanjim/nui.nvim",
+	"https://github.com/nvim-tree/nvim-web-devicons",
+  -- "https://github.com/folke/snacks.nvim",
+  -- "https://github.com/lewis6991/gitsigns.nvim"
+	"https://github.com/neovim/nvim-lspconfig",
+	"https://github.com/arnamak/stay-centered.nvim",
+  "https://github.com/kdheepak/lazygit.nvim"
+})
 
 vim.cmd(":hi statusline guibg=NONE")
 
--- TMP Lazyvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
-		lazypath,
-	})
-end
-vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-	{ import = "LSP" },
-	{ import = "plugins" },
-})
+vim.keymap.set("n", "<leader>fh", "<CMD>Pick help<CR>", { desc = "Find Help" })
+vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Explore" })
+
+-- Activating lazygit
+vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>")
+-- THEME
+require("rose-pine").setup(
+{
+			disable_background = true,
+			styles = {
+				bold = false,
+				italic = true,
+				transparency = true,
+			},
+			highlight_groups = {
+				LspInlayHint = { bg = "base", fg = "muted", italic = true },
+				NotificationInfo = { bg = "none", fg = "text" },
+				NotificationWarning = { bg = "none", fg = "subtle" },
+				NotificationError = { bg = "none", fg = "love" },
+			},
+		}
+)
 
 require("mini.pick").setup()
 require("mini.pairs").setup()
@@ -59,8 +75,4 @@ require("colorizer").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>fh", "<CMD>Pick help<CR>", { desc = "Find Help" })
-vim.keymap.set("n", "<leader>e", "<CMD>Oil --float<CR>", { desc = "Explore" })
-
--- Activating lazygit
-vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>")
+vim.cmd.colorscheme("rose-pine")
