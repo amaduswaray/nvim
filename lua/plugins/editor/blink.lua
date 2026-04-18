@@ -1,32 +1,22 @@
-local M = {}
+require("blink.cmp").setup({
+	keymap = {
+		preset = "default",
+		["<CR>"] = { "accept", "fallback" },
+	},
 
-function M.setup()
-	local blink = require("blink.cmp")
+	appearance = {
+		nerd_font_variant = "mono",
+	},
 
-	blink.setup({
-		keymap = {
-			preset = "default",
-			["<CR>"] = { "accept", "fallback" },
-		},
+	completion = {
+		documentation = { auto_show = false },
+	},
 
-		appearance = {
-			nerd_font_variant = "mono",
-		},
+	sources = {
+		default = { "lsp", "path", "snippets", "buffer" },
+	},
 
-		completion = {
-			documentation = { auto_show = false },
-		},
-
-		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
-		},
-
-		fuzzy = {
-			implementation = "lua",
-		},
-	})
-end
-
-M.setup()
-
-return M
+	fuzzy = {
+		implementation = "lua",
+	},
+})
