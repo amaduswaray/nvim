@@ -8,6 +8,7 @@ vim.pack.add({
   "https://github.com/echasnovski/mini.pairs",
   "https://github.com/echasnovski/mini.pick",
 	"https://github.com/stevearc/oil.nvim",
+  "https://github.com/folke/snacks.nvim",
 	"https://github.com/refractalize/oil-git-status.nvim",
 	"https://github.com/MunifTanjim/nui.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
@@ -17,7 +18,15 @@ vim.pack.add({
 	"https://github.com/arnamak/stay-centered.nvim",
   "https://github.com/kdheepak/lazygit.nvim",
   "https://github.com/nvim-lualine/lualine.nvim",
-  "https://github.com/windwp/nvim-ts-autotag"
+  "https://github.com/windwp/nvim-ts-autotag",
+  "https://github.com/folke/noice.nvim",
+  "https://github.com/numToStr/Comment.nvim",
+  "https://github.com/folke/which-key.nvim",
+ "https://github.com/lukas-reineke/indent-blankline.nvim",
+ "https://github.com/echasnovski/mini.indentscope",
+"https://github.com/stevearc/conform.nvim",
+"https://github.com/rafamadriz/friendly-snippets",
+"https://github.com/OXY2DEV/markview.nvim"
 })
 
 -- PLUGIN SETUPS
@@ -28,7 +37,9 @@ require("mini.pick").setup()
 require("mini.pairs").setup()
 require("stay-centered").setup()
 require("nvim-ts-autotag").setup()
-
+require("which-key").setup({
+			preset = "helix",
+})
 
 
 -- --- PLUGIN KEYBINDS
