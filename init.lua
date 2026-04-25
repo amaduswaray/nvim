@@ -1,5 +1,4 @@
 require("vim-options")
--- Read this docs for new add https://echasnovski.com/blog/2026-03-13-a-guide-to-vim-pack
 vim.cmd(":hi statusline guibg=NONE")
 
 vim.pack.add({
@@ -7,6 +6,7 @@ vim.pack.add({
 	"https://github.com/NvChad/nvim-colorizer.lua",
 	"https://github.com/echasnovski/mini.pairs",
 	"https://github.com/echasnovski/mini.pick",
+	"https://github.com/L3MON4D3/LuaSnip",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/folke/snacks.nvim",
 	"https://github.com/refractalize/oil-git-status.nvim",

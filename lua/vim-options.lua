@@ -170,6 +170,25 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- remove plugins from disk that are no longer in vim.pack.add() specs
+vim.api.nvim_create_user_command("PackClean", function()
+	local inactive = vim.iter(vim.pack.get())
+		:filter(function(x)
+			return not x.active
+		end)
+		:map(function(x)
+			return x.spec.name
+		end)
+		:totable()
+	if #inactive == 0 then
+		vim.notify("No inactive plugins to remove", vim.log.levels.INFO)
+		return
+	end
+	vim.pack.del(inactive)
+	vim.notify("Removed: " .. table.concat(inactive, ", "), vim.log.levels.INFO)
+end, { desc = "Remove plugins not in vim.pack.add() specs" })
+
+-- Use <leader> bo to delete all buffers except the active one
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		if vim.fn.argc() == 0 and vim.bo.filetype == "" then
