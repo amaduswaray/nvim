@@ -34,6 +34,16 @@ vim.pack.add({
 	"https://github.com/epwalsh/obsidian.nvim",
 })
 
+-- TREE SITTER
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "markdown", "blade", "lua", "rust" },
+	callback = function(args)
+		local bufnr = args.buf
+		pcall(vim.treesitter.start, bufnr)
+		vim.bo[bufnr].indentexpr = "v:lua.vim.treesitter.indentexpr()"
+	end,
+})
+
 -- PLUGIN SETUPS
 require("plugins")
 
