@@ -27,8 +27,6 @@ vim.pack.add({
 	"https://github.com/folke/noice.nvim",
 	"https://github.com/numToStr/Comment.nvim",
 	"https://github.com/folke/which-key.nvim",
-	"https://github.com/lukas-reineke/indent-blankline.nvim",
-	"https://github.com/echasnovski/mini.indentscope",
 	"https://github.com/stevearc/conform.nvim",
 	"https://github.com/rafamadriz/friendly-snippets",
 	"https://github.com/OXY2DEV/markview.nvim",
