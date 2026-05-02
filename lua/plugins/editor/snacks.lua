@@ -10,7 +10,9 @@ snacks.setup({
 local map = vim.keymap.set
 
 map("n", "<leader>ff", function()
-	snacks.picker.files()
+	snacks.picker.files({
+		layout = "telescope",
+	})
 end, { desc = "Find Files" })
 
 map("n", "<leader>fb", function()
@@ -26,7 +28,9 @@ map("n", "<leader>fg", function()
 end, { desc = "Find Grep" })
 
 map("n", "<leader>fr", function()
-	snacks.picker.recent()
+	snacks.picker.recent({
+		layout = "telescope",
+	})
 end, { desc = "Find Recent" })
 
 map("n", "<leader>gs", function()
@@ -34,6 +38,12 @@ map("n", "<leader>gs", function()
 		layout = "telescope",
 	})
 end, { desc = "Git Status" })
+
+map("n", "<leader>gf", function()
+	snacks.picker.git_files({
+		layout = "telescope",
+	})
+end, { desc = "Git Files" })
 
 map("n", "<leader>gl", function()
 	snacks.picker.git_log()

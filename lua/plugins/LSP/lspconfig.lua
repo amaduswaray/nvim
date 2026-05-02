@@ -83,6 +83,7 @@ vim.lsp.enable({
 	"svelte",
 	"marksman",
 	"cssls",
+	"html",
 	"rust_analyzer",
 	"elixirls",
 	"clangd",
@@ -104,4 +105,9 @@ vim.lsp.config("lua_ls", {
 			},
 		},
 	},
+})
+vim.lsp.enable("html")
+vim.lsp.config("html", {
+	capabilities = capabilities,
+	filetypes = { "html", "tsx", "heex", "blade", "elixirib" },
 })

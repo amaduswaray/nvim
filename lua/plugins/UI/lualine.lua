@@ -63,13 +63,13 @@ require("lualine").setup({
 		globalstatus = true,
 	},
 	sections = {
-		lualine_a = { { "mode", right_padding = 2, icon = "" } },
+		lualine_a = {
+			{ "mode", right_padding = 2, icon = "" },
+		},
 
 		lualine_b = {},
 
 		lualine_c = {
-			-- { "filetype", colored = true, icon_only = true },
-			{ "branch", icon = "" },
 			{ "diagnostics" },
 		},
 

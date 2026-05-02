@@ -10,5 +10,6 @@ require("conform").setup({
 		typescript = { "prettierd" },
 		typescriptreact = { "prettierd" },
 		json = { "prettierd" },
+		blade = { "blade-formatter" },
 	},
 })

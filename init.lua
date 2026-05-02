@@ -15,7 +15,6 @@ vim.pack.add({
 	"https://github.com/saghen/blink.cmp",
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-tree/nvim-web-devicons",
-	"https://github.com/b0o/incline.nvim",
 	"https://github.com/williamboman/mason.nvim",
 	"https://github.com/williamboman/mason-lspconfig.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
@@ -32,16 +31,11 @@ vim.pack.add({
 	"https://github.com/OXY2DEV/markview.nvim",
 	"https://github.com/stevearc/dressing.nvim",
 	"https://github.com/epwalsh/obsidian.nvim",
-})
-
--- TREE SITTER
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "markdown", "blade", "lua", "rust" },
-	callback = function(args)
-		local bufnr = args.buf
-		pcall(vim.treesitter.start, bufnr)
-		vim.bo[bufnr].indentexpr = "v:lua.vim.treesitter.indentexpr()"
-	end,
+	"https://github.com/nicolasgb/jj.nvim",
+	{
+		src = "https://github.com/kylechui/nvim-surround",
+		version = vim.version.range("4.x"),
+	},
 })
 
 -- PLUGIN SETUPS
@@ -53,6 +47,7 @@ require("mini.pairs").setup()
 require("stay-centered").setup()
 require("nvim-ts-autotag").setup()
 require("dressing").setup()
+require("jj").setup({})
 require("which-key").setup({
 	preset = "helix",
 })

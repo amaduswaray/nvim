@@ -8,12 +8,13 @@ if not vim.env.SSH_TTY then
 	opt.clipboard = "unnamedplus"
 end
 
+vim.opt.winbar = "%= %f %m"
 opt.winborder = "rounded"
 opt.cmdheight = 1
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 2
 opt.confirm = true
-opt.cursorline = true
+-- opt.cursorline = true
 opt.expandtab = true
 opt.formatoptions = "jcroqlnt"
 opt.grepformat = "%f:%l:%c:%m"
