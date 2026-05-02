@@ -13,7 +13,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gR", vim.lsp.buf.references, opts)
 
 		opts.desc = "Hover"
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		vim.keymap.set("n", "K", function()
+			vim.lsp.buf.hover({ border = "rounded", max_height = 35, max_width = 120 })
+		end, opts)
 
 		opts.desc = "Show LSP implementations"
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
@@ -25,17 +27,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>rs", "<CMD>LspRestart<CR>", opts)
 
 		opts.desc = "Show line diagnostics"
-		vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-
-		opts.desc = "Go to previous diagnostic"
-		vim.keymap.set("n", "[d", vim.diagnostic.get_prev, opts)
+		vim.keymap.set("n", "<leader>d", function()
+			vim.diagnostic.open_float({
+				border = "rounded",
+			})
+		end, opts)
 
 		opts.desc = "Go to next diagnostic"
 		vim.keymap.set("n", "]d", function()
 			vim.diagnostic.jump({ count = 1, float = true })
 		end, opts)
 
-		opts.desc = "Show line diagnostics"
+		opts.desc = "Go to prev diagnostic"
 		vim.keymap.set("n", "[d", function()
 			vim.diagnostic.jump({ count = -1, float = true })
 		end, opts)

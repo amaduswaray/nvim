@@ -8,6 +8,7 @@ if not vim.env.SSH_TTY then
 	opt.clipboard = "unnamedplus"
 end
 
+opt.winborder = "rounded"
 opt.cmdheight = 1
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 2
@@ -199,6 +200,18 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		end
 	end,
 })
+
+-- Remove the lsp signature help when typing functions
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client then
+			client.server_capabilities.signatureHelpProvider = nil
+		end
+	end,
+})
+
+vim.diagnostic.config({ virtual_text = false }) -- inline diagnostics
 
 -- Keymaps
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
