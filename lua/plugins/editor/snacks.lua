@@ -36,6 +36,11 @@ end, { desc = "Find Recent" })
 map("n", "<leader>gs", function()
 	snacks.picker.git_status({
 		layout = "telescope",
+		previewers = {
+			diff = {
+				style = "terminal",
+			},
+		},
 	})
 end, { desc = "Git Status" })
 

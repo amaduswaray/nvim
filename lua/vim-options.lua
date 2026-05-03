@@ -89,6 +89,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- Only line for oil buffers
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "oil",
+	callback = function()
+		vim.opt_local.cursorline = true
+	end,
+})
+
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	group = augroup("checktime"),
@@ -228,9 +236,16 @@ vim.keymap.set("n", "bd", "<cmd>bdelete<cr>", { desc = "Buffer delete" })
 
 vim.keymap.set("n", "bo", function()
 	local current = vim.api.nvim_get_current_buf()
+
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		if buf ~= current and vim.api.nvim_buf_is_loaded(buf) then
-			vim.cmd("bdelete " .. buf)
+			local bt = vim.bo[buf].buftype
+			local name = vim.api.nvim_buf_get_name(buf)
+
+			-- Only delete normal file buffers
+			if bt == "" and not name:match("^snacks://") then
+				vim.cmd("bdelete " .. buf)
+			end
 		end
 	end
 end, { desc = "Delete other buffers" })
@@ -249,3 +264,6 @@ vim.keymap.set("n", "<leader>e", "<CMD>Oil --float<CR>", { desc = "Explore" })
 
 -- Activating lazygit
 vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>")
+
+-- Tmux sessionizer
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")

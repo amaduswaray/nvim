@@ -1,6 +1,9 @@
 function _G.get_winbar()
 	local buf_path = vim.api.nvim_buf_get_name(0)
-	if buf_path == "" or vim.bo.buftype ~= "" then
+	local filename = vim.fn.fnamemodify(buf_path, ":t")
+	local filetype = vim.bo.filetype
+
+	if buf_path == "" or vim.bo.buftype ~= "" or filename == ".jjdescription" or filetype == "jjdescription" then
 		return ""
 	end
 

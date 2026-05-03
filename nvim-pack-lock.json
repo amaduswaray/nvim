@@ -28,6 +28,11 @@
       "rev": "8d82c240f190fc33723d48c308ccc1ed8baad69d",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "harpoon": {
+      "rev": "87b1a3506211538f460786c23f98ec63ad9af4e5",
+      "src": "https://github.com/ThePrimeagen/harpoon",
+      "version": "'harpoon2'"
+    },
     "jj.nvim": {
       "rev": "46932e5410c549036a6b2ee5feeb82eee5ef979a",
       "src": "https://github.com/nicolasgb/jj.nvim"
